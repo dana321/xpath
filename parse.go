@@ -470,7 +470,7 @@ func (p *parser) parseNodeTest(n node, axeTyp string) (opnd node) {
 		opnd = newAxisNode(axeTyp, "", "", "", n)
 		p.next()
 	default:
-		panic("expression must evaluate to a node-set - was:"+strconv.Itoa( p.r.typ))
+		panic("expression must evaluate to a node-set")
 	}
 	return opnd
 }
@@ -705,10 +705,7 @@ func (s *scanner) nextItem() bool {
 		s.typ = itemString
 		s.strval = s.scanString()
 	default:
-		if isDigit(s.curr) {
-			s.typ = itemNumber
-			s.numval = s.scanNumber()
-		} else if isName(s.curr) {
+		if isName(s.curr) || isDigit(s.curr) {
 			s.typ = itemName
 			s.name = s.scanName()
 			s.prefix = ""
