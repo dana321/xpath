@@ -470,7 +470,7 @@ func (p *parser) parseNodeTest(n node, axeTyp string) (opnd node) {
 		opnd = newAxisNode(axeTyp, "", "", "", n)
 		p.next()
 	default:
-		panic("expression must evaluate to a node-set")
+		panic("expression must evaluate to a node-set - was:"+p.r.typ)
 	}
 	return opnd
 }
